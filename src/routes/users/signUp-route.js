@@ -23,6 +23,12 @@ const signUpRoute = (request, response) => {
       response.write(JSON.stringify({ status: "success", user: incomeData }));
       response.end();
     });
+  } else {
+    response.writeHead(400, { "Content-Type": "text/html" });
+    response.write(
+      `<h1>ERROR. Suspected "POST" method but got "${request.method}"</h1>`
+    );
+    response.end();
   }
 };
 
