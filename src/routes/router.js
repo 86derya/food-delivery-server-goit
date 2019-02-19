@@ -5,6 +5,9 @@ const signUpRoute = require("./users/signUp-route");
 const router = {
   "/signup": signUpRoute,
   "/products": productsRoute,
+  "/products/": productsRoute,
+  "/": mainRoute,
+
   default: mainRoute
 };
 
