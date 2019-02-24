@@ -1,1 +1,1 @@
-# food-delivery-server-goit
+Mandatory key in POST.User requests is "userName"
