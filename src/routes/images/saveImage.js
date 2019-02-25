@@ -51,8 +51,13 @@ const saveImage = (req, res) => {
 
   // Берем другие данные что пришли
   const userId = req.body.userId;
-
+  console.log(userId);
   const userName = getUserNameById(userId);
+  console.log(userId);
+  if (!userName)
+    return res.json({
+      status: `failed. User with such ID is not found`
+    });
 
   moveImage(fileObject, userId).then(userImageFolderName => {
     res.json({

@@ -7,6 +7,7 @@ const { checkIfCreatedBefore, createUser } = require("./helpers");
 const signUpRoute = (request, response) => {
   const user = request.body;
   const { userName } = user;
+  console.log(user);
   const userNameIsFree = !checkIfCreatedBefore(userName);
 
   if (userNameIsFree) {
