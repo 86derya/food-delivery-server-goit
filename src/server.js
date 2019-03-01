@@ -3,7 +3,7 @@ const https = require("https");
 const bodyParser = require("body-parser");
 const app = require("./modules/app");
 const morgan = require("morgan");
-const router = require("./routes/router");
+const router = require("./router");
 const path = require("path");
 const fs = require("fs");
 

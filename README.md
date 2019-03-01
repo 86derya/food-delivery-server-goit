@@ -1,41 +1,67 @@
+=> GET.allProducts <= https://localhost:8080/products/
 
-Mandatory key in POST.User requests is "userName"
+---
 
-## Welcome to GitHub Pages
+=> POST.newProduct <= https://localhost:8080/products/
 
-You can use the [editor on GitHub](https://github.com/86derya/food-delivery-server-goit/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+{"sku": NUMBER###,
+"name": "###",
+"description": "###",
+"price": NUMBER###,
+"currency": "###",
+"creatorId": "###",
+"categories": ["###"]
+}
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+---
 
-### Markdown
+=> PUT.productById <= https://localhost:5000/products/5c791cbdbe262c5a1f75a603
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+{"price": NUMBER#####,
+"categories": [ "#####" ]
+}
 
-```markdown
-Syntax highlighted code block
+---
 
-# Header 1
-## Header 2
-### Header 3
+=> GET.allUsers <= https://localhost:8080/users/
 
-- Bulleted
-- List
+---
 
-1. Numbered
-2. List
+=> GET.userById <= https://localhost:8080/users/5c77d9e254d7ee65b2a3adb5
 
-**Bold** and _Italic_ and `Code` text
+---
 
-[Link](url) and ![Image](src)
-```
+=> POST.newUser <= https://localhost:8080/users/
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+{"firstName": "###",
+"lastName": "###",
+"telephone": ""###",
+"nickName": "###",
+"location": "###",
+"password": "###",
+"email": "###"
+}
 
-### Jekyll Themes
+---
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/86derya/food-delivery-server-goit/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+=> PUT.userById <= https://localhost:8080/products/5c7941732d613473ee5b545f
+{"favoriteProducts":"###"}
 
-### Support or Contact
+---
 
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+=> POST.newOrder <= https://localhost:8080/orders/
 
+{
+"creator": "###",
+"productsList": [{ "productId": "###", "productType": "###", "itemsCount": NUMBER### }],
+"deliveryType": "###",
+"deliveryAdress": "###",
+"sumToPay": NUMBER###,
+"status": "###"
+}
+
+---
+
+=> GET.orderById <= https://localhost:8080/orders/5c791dbfbe262c5a1f75a60a
+
+---
