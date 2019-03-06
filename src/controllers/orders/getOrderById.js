@@ -2,7 +2,7 @@ const Order = require("../../modules/db/schemas/order");
 const {
   orderSearchByIdSuccess,
   orderSearchByIdFail
-} = require("./configs/responses");
+} = require("../auth/configs/responses");
 
 const getOrderById = (request, response) => {
   const id = request.params.id;

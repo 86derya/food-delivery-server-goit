@@ -3,7 +3,7 @@ const Order = require("../../modules/db/schemas/order");
 const {
   orderCreatedFail,
   orderCreatedSuccess
-} = require("./configs/responses.js");
+} = require("../auth/configs/responses.js");
 
 const createOrder = (request, response) => {
   const order = request.body;

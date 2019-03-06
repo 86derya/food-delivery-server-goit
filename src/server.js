@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const router = require("./router");
 const path = require("path");
 const fs = require("fs");
+const config = require("../config");
 
 const errorHandler = (request, response, next) => {
   response.status(500).send("No such page");
@@ -32,6 +33,7 @@ const options = {
 
 const startServer = port => {
   app
+    .set("superSecret", config.secret)
     .use(bodyParser.urlencoded({ extended: false }))
     .use(bodyParser.json())
     .use(morgan("dev"))
@@ -45,4 +47,4 @@ const startServer = port => {
   console.log("Server is running at https://localhost:" + port);
 };
 
-module.exports = startServer;
+module.exports = startServer; 
