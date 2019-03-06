@@ -26,6 +26,7 @@ const checkToken = (request, response, next) => {
     }
 
     request.decoded = decoded;
+    console.log(decoded)
     next();
   });
 };

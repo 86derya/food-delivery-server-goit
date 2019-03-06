@@ -1,6 +1,6 @@
 const express = require("express");
 const mainRoute = require("./controllers/main/main");
-const { login, logout, signUp } = require("./controllers/auth");
+const { login, logout, signUp, getUserByToken } = require("./controllers/auth");
 const verifyToken = require("./modules/verifyToken");
 const {
   createUser,
@@ -22,7 +22,8 @@ apiRoutes
   .post("/auth/login", login)
   .post("/auth/register", signUp)
   .use(verifyToken)
-  .get("auth/logout", logout)
+  .get("/auth/current", getUserByToken)
+  .get("/auth/logout", logout)
   .get("/", mainRoute)
   .get("/users", getUsers)
   .get("/users/:id", getUserById)

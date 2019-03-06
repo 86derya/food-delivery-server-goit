@@ -25,5 +25,13 @@ module.exports = {
       status: "failed",
       user: reason
     });
+  },
+  idSerchSuccess: function(response, foundId) {
+    response.status(200);
+    response.json({ status: "success", user: foundId });
+  },
+  idSearchFailed: function(response) {
+    response.status(404);
+    response.json({ status: "failed", user: "Not Found" });
   }
 };
