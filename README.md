@@ -15,7 +15,7 @@
 
 ---
 
-=> PUT.productById <= https://localhost:5000/products/5c791cbdbe262c5a1f75a603
+=> PUT.productById <= https://localhost:8080/products/5c791cbdbe262c5a1f75a603
 
 {"price": NUMBER#####,
 "categories": [ "#####" ]

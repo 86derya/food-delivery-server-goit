@@ -11,8 +11,11 @@ const {
 const {
   createProduct,
   updateProduct,
-  getProducts
+  getProducts,
+  addIngredientsFieldtoAll,
+  getProductById
 } = require("./controllers/products/");
+const { createIngredient } = require("./controllers/ingredients/");
 
 const { createOrder, getOrderById } = require("./controllers/orders");
 
@@ -21,7 +24,7 @@ const apiRoutes = express.Router();
 apiRoutes
   .post("/auth/login", login)
   .post("/auth/register", signUp)
-  .use(verifyToken)
+  // .use(verifyToken)
   .get("/auth/current", getUserByToken)
   .get("/auth/logout", logout)
   .get("/", mainRoute)
@@ -31,8 +34,11 @@ apiRoutes
   .put("/users/:id", updateUser)
   .post("/products", createProduct)
   .get("/products", getProducts)
+  .put("/products", addIngredientsFieldtoAll)
   .put("/products/:id", updateProduct)
+  // .get("/products/:id", getProductById)
   .post("/orders", createOrder)
-  .get("/orders/:id", getOrderById);
+  .get("/orders/:id", getOrderById)
+  .post("/ingredients", createIngredient);
 
 module.exports = apiRoutes;
