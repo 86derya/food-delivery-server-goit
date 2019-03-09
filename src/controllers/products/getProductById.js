@@ -7,7 +7,9 @@ const getProductById = (request, response) => {
   const findProduct = Product.findById(id);
 
   findProduct
-    .then(product => idSerchSuccess(response, product))
+    .then(product =>
+      !product ? idSearchFailed(response) : idSerchSuccess(response, product)
+    )
     .catch(err => {
       console.error("ERROR: ", err.message), idSearchFailed(response);
     });

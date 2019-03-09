@@ -14,7 +14,7 @@ const updateProduct = (request, response) => {
     { new: true },
     function(error, product) {
       if (error) {
-        productUpdateFailed(response, (reason = error.message));
+        productUpdateFailed(response);
       } else {
         productUpdateSuccess(response, product);
       }
