@@ -13,7 +13,7 @@ module.exports = {
   },
   ctgryQueryFailed: function(response) {
     response.status(404);
-    response.json({ status: "no products", products: [] });
+    response.json({ status: "failed", products: [] });
   },
   idsQuerySuccess: function(response, filteredProducts) {
     response.status(200);
@@ -21,7 +21,7 @@ module.exports = {
   },
   idsQueryFailed: function(response) {
     response.status(404);
-    response.json({ status: "no products", products: [] });
+    response.json({ status: "failed", products: [] });
   },
   idSerchSuccess: function(response, foundId) {
     response.status(200);

@@ -9,7 +9,8 @@ const {
 const {
   createProduct,
   updateProduct,
-  getProducts
+  getProducts,
+  getProductById
 } = require("./controllers/products/");
 
 const { createOrder, getOrderById } = require("./controllers/orders");
@@ -25,6 +26,7 @@ apiRoutes
   .post("/products", createProduct)
   .get("/products", getProducts)
   .put("/products/:id", updateProduct)
+  .get("/products/:id", getProductById)
   .post("/orders", createOrder)
   .get("/orders/:id", getOrderById);
 
