@@ -10,11 +10,11 @@ const updateProduct = (request, response) => {
 
   Product.findOneAndUpdate(
     { _id: id },
-    propertyToUpdate,
+    { $push: propertyToUpdate },
     { new: true },
     function(error, product) {
       if (error) {
-        productUpdateFailed(response, (reason = error.message));
+        productUpdateFailed(response);
       } else {
         productUpdateSuccess(response, product);
       }
