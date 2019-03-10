@@ -6,15 +6,18 @@ const {
 const { checkPassword, generateToken } = require("./helpers");
 
 const login = (request, response) => {
-  const { email, password } = request.body;
+  const { username_email, password } = request.body;
 
-  User.findOne({ email: email }, onFind);
+  User.findOne(
+    { $or: [{ email: username_email }, { nickName: username_email }] },
+    onFind
+  );
 
   function onFind(err, user) {
     console.log(user);
     if (err) throw err;
 
-    if (!user) return authenticationFailed(response, "Incorrect email");
+    if (!user) return authenticationFailed(response, "Incorrect login");
 
     const isPasswordCorrect = checkPassword(password, user.password);
 

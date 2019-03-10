@@ -7,7 +7,9 @@ const getUserById = (request, response) => {
   const findUser = User.findById(id);
 
   findUser
-    .then(user => idSerchSuccess(response, user))
+    .then(user =>
+      !user ? idSearchFailed(response) : idSerchSuccess(response, user)
+    )
     .catch(err => {
       console.error("ERROR: ", err.message), idSearchFailed(response);
     });

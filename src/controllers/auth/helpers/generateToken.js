@@ -5,7 +5,7 @@ const generateToken = paramsForTokenGeneration => {
   const secretKey = app.get("superSecret");
 
   return jwt.sign(paramsForTokenGeneration, secretKey, {
-    expiresIn: 60 * 60 * 24
+    expiresIn: 60 * 60 * 72
   });
 };
 module.exports = generateToken;
