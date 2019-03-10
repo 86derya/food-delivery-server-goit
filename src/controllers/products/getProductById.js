@@ -6,13 +6,13 @@ const getProductById = (request, response) => {
 
   const findProduct = Product.findById(id);
 
-  findProduct
-    .then(product =>
-      !product ? idSearchFailed(response) : idSerchSuccess(response, product)
-    )
-    .catch(err => {
+  findProduct.populate("ingredients").exec((err, populatedProduct) => {
+    if (err) {
       console.error("ERROR: ", err.message), idSearchFailed(response);
-    });
+    } else {
+      idSerchSuccess(response, populatedProduct);
+    }
+  });
 };
 
 module.exports = getProductById;

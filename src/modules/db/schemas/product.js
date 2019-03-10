@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const timestamp = require("../middleware/timestamp");
-var uniqueValidator = require("mongoose-unique-validator");
-var ObjectId = mongoose.Schema.Types.ObjectId;
+const uniqueValidator = require("mongoose-unique-validator");
+const ObjectId = mongoose.Schema.Types.ObjectId;
+const ingredient = require("./ingredient");
 
 const productSchema = new Schema({
   id: ObjectId,
@@ -13,7 +14,15 @@ const productSchema = new Schema({
   currency: String,
   creatorId: String,
   categories: Array,
-  likes: String
+  likes: String,
+  ingredients: [
+    {
+      type: ObjectId,
+      ref: ingredient,
+      required: true,
+      unique: true
+    }
+  ]
 });
 
 productSchema.plugin(timestamp);
