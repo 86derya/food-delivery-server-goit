@@ -2,9 +2,19 @@ const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
 const util = require("util");
+const tinify = require("tinify");
 
 const { usersSrc } = require("./pathes");
 const { getUserNameById } = require("./helpers");
+
+tinify.key = "2yvfglNBbIpLwai4vZClCQ16FGuXyQY8";
+
+function replaceContents(file, replacement, cb) {
+  fs.readFile(replacement, (err, contents) => {
+    if (err) return cb(err);
+    fs.writeFile(file, contents, cb);
+  });
+}
 
 const renameFile = util.promisify(fs.rename);
 
@@ -48,6 +58,9 @@ const moveImage = (fileObject, userId) => {
 const saveImage = (req, res) => {
   // Берем файл
   const fileObject = req.file;
+  console.log("fileObject: " + fileObject);
+  const fileurl = req.body.urlimg;
+  console.log("url: " + fileurl);
 
   // Берем другие данные что пришли
   const userId = req.body.userId;
@@ -60,9 +73,58 @@ const saveImage = (req, res) => {
     });
 
   moveImage(fileObject, userId).then(userImageFolderName => {
-    res.json({
-      status: `was saved in folder: db/users/${userName}/${userImageFolderName}`
-    });
+    if (fileurl) {
+      const source = tinify.fromUrl(fileurl);
+      console.log();
+      source
+        .toFile(
+          path.join(
+            usersSrc,
+            userName,
+            userImageFolderName,
+            fileurl
+              .substring(fileurl.lastIndexOf("/") + 1)
+              .replace(/((\?|#).*)?$/, "") + "-optimized.jpg"
+          )
+        )
+        .then(() =>
+          res.json({
+            status: `was saved in folder: db/users/${userName}/${userImageFolderName}`
+          })
+        );
+    }
+    tinify
+      .fromFile(
+        path.join(
+          usersSrc,
+          userName,
+          userImageFolderName,
+          fileObject.originalname
+        )
+      )
+      .toFile(
+        path.join(
+          usersSrc,
+          userName,
+          userImageFolderName,
+          fileObject.originalname + "-optimized.jpg"
+        )
+      )
+      .then(() =>
+        fs.unlinkSync(
+          path.join(
+            usersSrc,
+            userName,
+            userImageFolderName,
+            fileObject.originalname
+          )
+        )
+      )
+      .then(() =>
+        res.json({
+          status: `was saved in folder: db/users/${userName}/${userImageFolderName}`
+        })
+      );
   });
 };
 
